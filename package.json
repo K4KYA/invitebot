@@ -1,6 +1,6 @@
 {
   "name": "invitebot",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "author": "Amal Kakaiya",
   "description": "A bot to help us use Slack more effectively",
@@ -20,6 +20,6 @@
     "hubot-slack": "^4.3.4"
   },
   "engines": {
-    "node": "0.10.x"
+    "node": "8.2.1"
   }
 }
