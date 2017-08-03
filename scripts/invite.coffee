@@ -20,4 +20,4 @@ getRandomItem = (items) ->
 
 module.exports = (robot) ->
   robot.hear /^(@[\w\.\-\_]+ ?)+$/g, (res) ->
-      res.send getRandomItem(SUGGESTIONS) + ' \'' + TRY_INVITE
+      res.send getRandomItem(SUGGESTIONS) + TRY_INVITE
