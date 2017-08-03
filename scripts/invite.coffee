@@ -12,7 +12,9 @@ SUGGESTIONS = [
   'Did you mean to'
 ]
 
-TRY_INVITE = " use \`/invite\` to invite someone to this channel? It avoids an unnecessary unread notification for everyone in the channel, and means you don\'t have to confirm that you actually wanted to invite them. Win, Win! Try it next time :"
+TRY_INVITE_1 = " use \`/invite\` to invite `"
+
+TRY_INVITE_2 = "` to this channel? It avoids an unnecessary unread notification for everyone in the channel, and means you don\'t have to confirm that you actually wanted to invite them. Win, win! Try it next time!"
 
 getRandomItem = (items) ->
   i = Math.floor(Math.random() * items.length)
@@ -20,4 +22,4 @@ getRandomItem = (items) ->
 
 module.exports = (robot) ->
   robot.hear /^(@[\w\.\-\_]+ ?)+$/g, (res) ->
-      res.send getRandomItem(SUGGESTIONS) + TRY_INVITE
+      res.send getRandomItem(SUGGESTIONS) + TRY_INVITE_1 + res.match + TRY_INVITE_2
