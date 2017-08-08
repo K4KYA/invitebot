@@ -18,4 +18,4 @@ TRY_INVITE_2 = "` to this channel? It avoids an unnecessary unread notification 
 
 module.exports = (robot) ->
   robot.hear /^(@[\w\.\-\_]+ ?)+$/g, (res) ->
-      res.send (res.random SUGGESTIONS) + TRY_INVITE_1 + res.match + TRY_INVITE_2
+      res.reply (res.random SUGGESTIONS) + TRY_INVITE_1 + res.match + TRY_INVITE_2
