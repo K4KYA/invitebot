@@ -1,21 +1,10 @@
 # Description
-#   Listens for mentions of 'guys' and responds with helpful alternatives
+#   Listens for messages which are mentions only, meant to invite people to the channel
+#   Encourages use of /invite to do the same thing
 #
 # Author:
 #   Amal Kakaiya[amal.kakaiya@gmail.com]
 
-SUGGESTIONS = [
-  'Why not try to',
-  'Next time try to',
-  'Did you know you could',
-  'Perhaps you meant to',
-  'Did you mean to'
-]
-
-TRY_INVITE_1 = " use \`/invite\` to invite `"
-
-TRY_INVITE_2 = "` to this channel? It avoids an unnecessary unread notification for everyone in the channel, and means you don\'t have to confirm that you actually wanted to invite them. Win, win! Try it next time!"
-
 module.exports = (robot) ->
   robot.hear /^(@[\w\.\-\_]+ ?)+$/g, (res) ->
-      res.reply (res.random SUGGESTIONS) + TRY_INVITE_1 + res.match + TRY_INVITE_2
+      res.reply "Tip: You can invite users faster by typing `/invite "+res.match+"` - no need to confirm"
