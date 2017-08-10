@@ -6,7 +6,6 @@
   "description": "A bot to help us use Slack more effectively",
   "dependencies": {
     "hubot": "^2.19.0",
-    "hubot-business-cat": "^1.5.8",
     "hubot-diagnostics": "0.0.2",
     "hubot-google-images": "^0.2.7",
     "hubot-google-translate": "^0.2.1",
