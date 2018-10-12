@@ -5,7 +5,7 @@ randomInt = (lower, upper) ->
 
 console.log(randomInt(1))
 
-input = "bunting testing with :partyparrot: 01"
+input = "@here bunting testing with :partyparrot: 01"
 words = input.split " "
 phrase = ""
 for word in words[1..]
@@ -25,3 +25,5 @@ for word in words[1..]
   else 
       phrase += ":bunting_kelp:"
 console.log(phrase[..-15])
+
+console.log(input.indexOf "here", 0)
