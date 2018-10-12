@@ -5,19 +5,32 @@
 # Author:
 #   Amal Kakaiya[amal.kakaiya@gmail.com]
 
+randomInt = (lower, upper) ->
+  [lower, upper] = [0, lower]     unless upper?          
+  [lower, upper] = [upper, lower] if lower > upper       
+  Math.floor(Math.random() * (upper - lower + 1) + lower)
+
 module.exports = (robot) ->
   robot.hear /^(@[\w\.\-\_]+ ?)+$/g, (res) ->
       res.reply "Tip: You can invite users faster by typing `/invite "+res.match+"` - no need to confirm, (and it doesn't alert others :roowithit:)"
 
-  robot.hear /^bunting ([A-Za-z0-9 ])+$/g, (res) ->
+  robot.hear /^bunting .+$/g, (res) ->
       words = res.match[0].split " "
       phrase = ""
       for word in words[1..]
-        if word.toLowerCase().match(/[a-z]+/g)
-          for l in word
+        emoji = word.match(/(\:.+\:)/)
+        text = word.toLowerCase().match(/[a-z]+/g)
+        number = word.match(/[0-9]+/g)
+        if emoji
+          phrase += emoji[0]
+        else if text
+          for l in text[0]
             phrase += ":bunting_"+l+":"
-        if word.match(/[0-9]+/g)
-          for n in word
+        else if number
+          for n in number[0]
             phrase += ":"+n+":"
-        phrase += "   "
-      res.send phrase
+        if randomInt(1) == 1
+            phrase += ":bunting_teal:"
+        else 
+            phrase += ":bunting_kelp:"
+      res.send phrase[..-15]
