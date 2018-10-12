@@ -12,7 +12,9 @@ randomInt = (lower, upper) ->
 
 module.exports = (robot) ->
   robot.hear /^(@[\w\.\-\_]+ ?)+$/g, (res) ->
-      res.reply "Tip: You can invite users faster by typing `/invite "+res.match+"` - no need to confirm, (and it doesn't alert others :roowithit:)"
+      console.log(res.match)
+      if !res.match[0].indexOf "here", 0
+        res.reply "Tip: You can invite users faster by typing `/invite "+res.match+"` - no need to confirm, (and it doesn't alert others :roowithit:)"
 
   robot.hear /^bunting .+$/g, (res) ->
       words = res.match[0].split " "
