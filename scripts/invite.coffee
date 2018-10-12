@@ -15,7 +15,7 @@ module.exports = (robot) ->
     console.log(res.match)
     containsHere = res.match[0].indexOf "here", 0
     console.log(containsHere)
-    if containsHere >= 0
+    if containsHere < 0
       console.log("replying in a channel")
       message = "You can invite users faster by typing `/invite "+res.match[0]+"` - no need to confirm, (and it doesn't alert others :roowithit:)"
       console.log(message)
