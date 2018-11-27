@@ -20,6 +20,22 @@ module.exports = (robot) ->
       console.log("Message contains @here or @channel, ignoring")
       return
 
+    # only trigger for messages which actually contain user mentions
+    user_mentions = (mention for mention in res.message.mentions when mention.type is "user")
+    if user_mentions.length > 0
+      console.log("Message contains "+user_mentions.length+" mentions")
+      if user_mentions.length == 1
+        mentioned_username = user_mentions[0].info.name
+        message = "You can invite users faster by typing `/invite @"+mentioned_username+"` - no need to confirm, and it doesn't alert others :roowithit:"
+        res.reply message
+      else if user_mentions.length > 1
+        mentioned_username = user_mentions[0].info.name
+        message = "You can invite users using `/invite` e.g. `/invite @"+mentioned_username+"` (one at a time) - no need to confirm, and it doesn't alert others :roowithit:"
+        res.reply message
+
+    else
+      console.log("Message contains no mentions, ignoring")
+
   robot.hear /^bunting .+$/g, (res) ->
     words = res.match[0].split " "
     phrase = ""
