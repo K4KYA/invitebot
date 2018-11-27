@@ -13,13 +13,12 @@ randomInt = (lower, upper) ->
 module.exports = (robot) ->
   robot.hear /^(@[\w\.\-\_]+ ?)+$/g, (res) ->
     console.log(res.match)
+    # Do not trigger for messages which are just @here or @channel
     containsHere = res.match[0].indexOf "here", 0
-    console.log(containsHere)
-    if containsHere < 0
-      console.log("replying in a channel")
-      message = "You can invite users faster by typing `/invite "+res.match[0]+"` - no need to confirm, (and it doesn't alert others :roowithit:)"
-      console.log(message)
-      res.reply message
+    containsChannel = res.match[0].indexOf "channel", 0
+    if (containsHere != -1) || (containsChannel != -1)
+      console.log("Message contains @here or @channel, ignoring")
+      return
 
   robot.hear /^bunting .+$/g, (res) ->
     words = res.match[0].split " "
