@@ -8,8 +8,8 @@
 {WebClient} = require "@slack/client"
 
 randomInt = (lower, upper) ->
-  [lower, upper] = [0, lower]     unless upper?          
-  [lower, upper] = [upper, lower] if lower > upper       
+  [lower, upper] = [0, lower]     unless upper?
+  [lower, upper] = [upper, lower] if lower > upper
   Math.floor(Math.random() * (upper - lower + 1) + lower)
 
 module.exports = (robot) ->
@@ -40,12 +40,12 @@ module.exports = (robot) ->
           mentioned_username = user_mentions[0].info.name
           message = "You can invite users faster by typing `/invite @"+mentioned_username+"` - no need to confirm, and it doesn't alert others :roowithit:"
           res.reply message
-        else if user_mentions.length > 1            
+        else if user_mentions.length > 1
           mentioned_username = user_mentions[0].info.name
           message = "You can invite users using `/invite` e.g. `/invite @"+mentioned_username+"` (one at a time) - no need to confirm, and it doesn't alert others :roowithit:"
           res.reply message
       .catch (error) ->
-        console.error error 
+        console.error error
     else
       console.log("Message contains no mentions, ignoring")
 
@@ -66,6 +66,21 @@ module.exports = (robot) ->
           phrase += ":"+n+":"
       if randomInt(1) == 1
           phrase += ":bunting_teal:"
-      else 
+      else
           phrase += ":bunting_kelp:"
     res.send phrase[..-15]
+
+  robot.hear /.*xcode.*/, (res) ->
+    words = res.match[0].split " "
+    phrase = []
+    i = 0
+    for word in words
+      phrase.push word.replace(/xcode/, (match) ->
+        i++
+        if i == 1
+          return match + " gon' give it to ya"
+        else if i == 2
+          i = 0
+          return match + " gonna deliver to ya"
+      )
+    res.send phrase.join(" ")
